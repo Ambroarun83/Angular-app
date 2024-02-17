@@ -1,0 +1,35 @@
+.nav-bar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    /* Adjust padding as needed */
+    background-color: var(--marudham-color);
+    border-radius: 10px;
+    color: #ffffff;
+    transition: height 0.3s, padding 0.3s;
+    z-index: 999;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    margin-left: 20px;
+    /* Adjust spacing between links as needed */
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.small {
+    height: 60px;
+    /* Decreased height when scrolling */
+    padding: 5px 20px;
+    /* Decreased padding when scrolling */
+}

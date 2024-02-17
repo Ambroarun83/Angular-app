@@ -1,0 +1,202 @@
+<!-- <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
+
+
+<form [formGroup]="request_creationForm">
+    <div class="card">
+        <div class="card-header">General Info</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cus_id">Customer ID</label><span class="required">&nbsp;*</span>
+                                <input type="text" class="form-control" id="cus_id" data-type="adhaar-number"
+                                    maxlength="14" placeholder="Enter Adhaar Number" autocomplete="off"
+                                    formControlName="cus_id">
+                                <span class="required" style="display:none" id="cusidCheck">Please Enter Customer
+                                    ID</span>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+                            <div class="form-group">
+                                <label for="cus_status" style="visibility: hidden;">Customer Data</label>
+                                <input type="button" class="form-control btn btn-outline-secondary" autocomplete="off"
+                                    ngDefaultControl="cus_status" value="Customer Status">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cus_data">Customer Data</label>
+                                <input type="text" class="form-control" id="cus_data" autocomplete="off"
+                                    formControlName="cus_data" readonly>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cus_name">Customer Name</label><span class="required">&nbsp;*</span>
+                                <input type="text" class="form-control" id="cus_name" autocomplete="off"
+                                    formControlName="cus_name" placeholder="Enter Customer Name">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="dob">Date Of Birth</label><span class="required">&nbsp;*</span>
+                                <input type="date" class="form-control" id="dob" autocomplete="off"
+                                    formControlName="dob" (change)="calculateAge()">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="age">Age</label><span class="required">&nbsp;*</span>
+                                <input type="text" class="form-control" autocomplete="off" formControlName="age"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-8">
+                            <div class="form-group">
+                                <label for="gender">Gender&nbsp;<span class="required">&nbsp;*</span></label>
+                                <select tabindex="15" type="text" class="form-control" formControlName="gender">
+                                    <option value="">Select Gender</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                    <option value="3">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-8">
+                            <div class="form-group">
+                                <label for="disabledInput">State</label>&nbsp;<span class="required">*</span>
+                                <select type="text" class="form-control" formControlName="state" tabindex="16" (change)="getDistricts()">
+                                    <option value="">Select State</option>
+                                    <option value="TamilNadu">Tamil Nadu</option>
+                                    <option value="Puducherry">Puducherry</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-8">
+                            <div class="form-group">
+                                <label for="disabledInput">District</label>&nbsp;<span class="required">*</span>
+                                <select type="text" class="form-control" formControlName="district" tabindex='17' (change)="getTaluks()">
+                                    <option *ngFor="let district of districts" [value]="district.value">{{ district.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-8">
+                            <div class="form-group">
+                                <label for="disabledInput">Taluk</label>&nbsp;<span class="required">*</span>
+                                <select type="text" class="form-control" formControlName="taluk" tabindex="18">
+                                    <option *ngFor="let taluk of taluks" [value]="taluk.value">{{ taluk.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-8">
+                            <div class="form-group">
+                                <label for="disabledInput">Area</label>&nbsp;<span class="required">*</span>
+                                <select tabindex="19" type="text" class="form-control" formControlName="area">
+                                    <option value="">Select Area</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-8">
+                            <div class="form-group">
+                                <label for="disabledInput">Sub Area</label>&nbsp;<span class="required">*</span>
+                                <select tabindex="20" type="text" class="form-control" formControlName="sub_area">
+                                    <option value=''>Select Sub Area</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-8">
+                            <div class="form-group">
+                                <label for="address">Address</label><span class="required">&nbsp;*</span>
+                                <input type="text" class="form-control" formControlName="address" value='' tabindex='21'
+                                    placeholder="Enter Address">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-8">
+                            <div class="form-group">
+                                <label for="mobile1">Mobile No 1</label><span class="required">&nbsp;*</span>
+                                <input type="number" class="form-control" formControlName="mobile1"
+                                    onkeypress="if(this.value.length==10) return false;" value='' tabindex='22'
+                                    placeholder="Enter Mobile Number">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-8">
+                            <div class="form-group">
+                                <label for="mobile2">Mobile No 2</label>
+                                <input type="number" class="form-control" formControlName="mobile2"
+                                    onkeypress="if(this.value.length==10) return false;" value='' tabindex='23'
+                                    placeholder="Enter Mobile Number">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-8">
+                            <div class="form-group">
+                                <label for="father_name">Father Name</label><span class="required">&nbsp;*</span>
+                                <input type="text" class="form-control" formControlName="father_name" value=''
+                                    tabindex='24' placeholder="Enter Father's Name" pattern="[a-zA-Z\s]+">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-8">
+                            <div class="form-group">
+                                <label for="mother_name">Mother Name</label><span class="required">&nbsp;*</span>
+                                <input type="text" class="form-control" formControlName="mother_name" value=''
+                                    tabindex='25' placeholder="Enter Mother's Name" pattern="[a-zA-Z\s]+">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-8">
+                            <div class="form-group">
+                                <label for="marital">Marital Status<span class="required">&nbsp;*</span></label>
+                                <select tabindex="26" type="text" class="form-control" formControlName="marital">
+                                    <option value="">Select Marital Status</option>
+                                    <option value="1">Married</option>
+                                    <option value="2">Unmarried</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-8 spouse" style="display:none">
+                            <div class="form-group">
+                                <label for="spouse_name">Spouse Name</label><span class="required">&nbsp;*</span>
+                                <input type="text" class="form-control" formControlName="spouse_name" value=''
+                                    tabindex='27' placeholder="Enter Spouse Name" pattern="[a-zA-Z\s]+">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-8">
+                            <div class="form-group">
+                                <label for="occ_type">Occupation Type<span class="required">&nbsp;*</span></label>
+                                <select tabindex="28" type="text" class="form-control" formControlName="occ_type">
+                                    <option value="">Select Occupation Type</option>
+                                    <option value="1">Govt Job</option>
+                                    <option value="2">Pvt Job</option>
+                                    <option value="3">Business</option>
+                                    <option value="4">Self Employed</option>
+                                    <option value="5">Daily wages</option>
+                                    <option value="6">Agriculture</option>
+                                    <option value="7">Others</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-8">
+                            <div class="form-group">
+                                <label for="occupation">Occupation</label><span class="required">&nbsp;*</span>
+                                <input type="text" class="form-control" formControlName="occupation" value=''
+                                    tabindex='29' placeholder="Enter Occupation" pattern="[a-zA-Z\s]+">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <div class="form-group" style="margin-left: 30px;">
+                            <label for="cus_pic" style="margin-left: -20px;">Photo</label><span
+                                class="required">&nbsp;*</span><br>
+                            <img class='imgshow' src='../../assets/avatar.png' />
+                            <input type="file" class="form-control" formControlName="cus_pic" value=''>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

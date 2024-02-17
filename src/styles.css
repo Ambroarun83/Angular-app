@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --primary-color: #605DC8;
+    --secondary-color: #8B89E6;
+    --accent-color: #e8e7fa;
+    --shadow-color: #E8E8E8;
+    --marudham-color: #009986;
+}
+
+/* common css applies to all pages */
+/* code only which are not mentioned in bootstrap */
+form {
+    margin: 15px;
+}
+
+.required {
+    color: rgb(255, 0, 0);
+}
+
+.imgshow{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: white;
+}
